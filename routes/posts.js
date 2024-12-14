@@ -9,10 +9,16 @@ const Post = require('../models/post');
 
 // Définition de la route GET /posts pour récupérer tous les articles
 router.get('/', async (req, res) => {
-    // Utilise Sequelize pour récupérer tous les enregistrements de la table 'posts'
-    const posts = await Post.findAll();
-    // Envoie les articles sous forme de JSON en réponse
-    res.json(posts);
+    try {
+        const posts = await Post.findAll();
+        if (posts.length === 0) {
+            return res.status(404).json({ message: 'No posts found' });
+        }
+        res.json(posts);
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+        res.status(500).json({ message: 'Error fetching posts' });
+    }
 });
 
 // Définition de la route GET /posts/:id pour récupérer un article spécifique par son ID

@@ -1,24 +1,60 @@
+version: '3.8'
+
 services:
+  # Définit les services (conteneurs) utilisés dans l'application.
+  # Chaque service correspond à un conteneur distinct.
+
   app:
+    # Définition du service pour l'application Node.js.
     build: .
+    # Indique que l'image Docker doit être construite à partir du Dockerfile
+    # situé dans le répertoire actuel (`.`).
+
     ports:
       - "3000:3000"
+      # Mappe le port 3000 de l'hôte (ordinateur local) au port 3000 du conteneur.
+      # Cela permet d'accéder à l'application via `http://localhost:3000`.
+
     depends_on:
       - db
+      # Indique que ce service dépend du service "db".
+      # Cela garantit que la base de données sera démarrée avant l'application.
+
   db:
+    # Définition du service pour la base de données PostgreSQL.
     image: postgres
+    # Utilise l'image officielle de PostgreSQL depuis Docker Hub.
+
     environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: mayssa
+      # Définit le nom d'utilisateur de la base de données PostgreSQL.
+      POSTGRES_PASSWORD: accessforall
+      # Définit le mot de passe de l'utilisateur PostgreSQL.
       POSTGRES_DB: database
+      # Définit le nom de la base de données par défaut qui sera créée au démarrage.
+
     volumes:
       - db_data:/var/lib/postgresql/data
+      # Monte un volume nommé `db_data` pour stocker les données PostgreSQL de manière persistante.
+      # Les données seront sauvegardées dans `/var/lib/postgresql/data` à l'intérieur du conteneur.
+
   pgadmin:
+    # Définition du service pour l'interface de gestion pgAdmin.
     image: dpage/pgadmin4
+    # Utilise l'image officielle de pgAdmin depuis Docker Hub.
+
     ports:
       - "5050:80"
+      # Mappe le port 80 du conteneur au port 5050 de l'hôte.
+      # Cela permet d'accéder à l'interface pgAdmin via `http://localhost:5050`.
+
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@example.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: miniprojet@gmail.com
+      # Définit l'adresse email utilisée pour se connecter à pgAdmin.
+      PGADMIN_DEFAULT_PASSWORD: miniprojet
+      # Définit le mot de passe pour l'utilisateur pgAdmin.
+
 volumes:
   db_data:
+    # Déclare le volume nommé `db_data`.
+    # Ce volume est utilisé pour sauvegarder les données de PostgreSQL.
