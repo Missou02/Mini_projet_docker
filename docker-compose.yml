@@ -26,7 +26,7 @@ services:
     # Utilise l'image officielle de PostgreSQL depuis Docker Hub.
 
     environment:
-      POSTGRES_USER: mayssa
+      POSTGRES_USER: student
       # Définit le nom d'utilisateur de la base de données PostgreSQL.
       POSTGRES_PASSWORD: accessforall
       # Définit le mot de passe de l'utilisateur PostgreSQL.

@@ -4,13 +4,13 @@ const { Sequelize } = require('sequelize');
  * Cette classe est utilisée pour configurer et gérer la connexion à la base de données.
  */
 
-const sequelize = new Sequelize('database', 'mayssa', 'accessforall', {
+const sequelize = new Sequelize('database', 'student', 'accessforall', {
     /**
      * Crée une instance de Sequelize qui configure la connexion à la base de données.
      * Les paramètres sont :
      * - `'database'` : Le nom de la base de données à laquelle se connecter.
-     * - `'username'` : Le nom d'utilisateur pour la connexion.
-     * - `'password'` : Le mot de passe pour l'utilisateur.
+     * - `'student'` : Le nom d'utilisateur pour la connexion.
+     * - `'accessforall'` : Le mot de passe pour l'utilisateur.
      * - Un objet de configuration supplémentaire avec des options spécifiques.
      */
     
